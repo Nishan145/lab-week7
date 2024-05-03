@@ -29,4 +29,23 @@ app.get("/categories", async (request, response) => {
   response.json(result.rows);
 });
 
+app.post("/posts", async (request, response) => {
+  const { title, content, category } = request.body;
+
+  //    category ID based on the category name
+  const categoryResult = await db.query(
+    "SELECT id FROM categories WHERE name = $1",
+    [category]
+  );
+  const categoryId = categoryResult.rows.length;
+
+  // Insert the new post into the posts table
+  await db.query(
+    "INSERT INTO posts (title, content, category_id) VALUES ($1, $2, $3)",
+    [title, content, categoryId]
+  );
+
+  response.status().json({ message: "Post created successfully" });
+});
+
 app.listen(3000, () => console.log("you are listening to port 3000..."));
