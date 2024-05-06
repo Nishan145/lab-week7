@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Posts() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/posts")
+    fetch("https://lab-week7-1.onrender.com/posts")
       .then((response) => response.json())
       .then((data) => setPosts(data));
   }, []);
@@ -20,6 +21,7 @@ function Posts() {
           </li>
         ))}
       </ul>
+      <Link to="/">Back to Home</Link>
     </div>
   );
 }

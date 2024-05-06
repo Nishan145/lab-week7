@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/posts" element={<Posts />} />
         <Route path="/newpost" element={<NewPost />} />
-        <Route path="/" element={<Home />} /> {/* Route for the root URL */}
+        <Route path="/" element={<Home />} />
       </Routes>
     </Router>
   );
